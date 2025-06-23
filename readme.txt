@@ -9,3 +9,4 @@ to add to winreg:
 	where the first path points to the batch file, and %1 indicates the file that is being
 	passed by the context menu
 	
+this works by calculating the maximum bitrate to get the file size to <10mb, and then also reducing resolution. sometimes it doesn't get to under 10 mb, just compress again :P

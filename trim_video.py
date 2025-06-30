@@ -5,15 +5,25 @@ import sys
 def trim_video(video_path, start_time, end_time):
     base, ext = os.path.splitext(video_path)
     output_path = f"{base}_trimmed{ext}"
-    command = [
-        'ffmpeg',
-        '-y',
-        '-ss', start_time,
-        '-to', end_time,
-        '-i', video_path,
-        '-c', 'copy',
-        output_path
-    ]
+    if end_time == '':
+        command = [
+            'ffmpeg',
+            '-y',
+            '-ss', start_time,
+            '-i', video_path,
+            '-c', 'copy',
+            output_path
+        ]
+    else:
+        command = [
+            'ffmpeg',
+            '-y',
+            '-ss', start_time,
+            '-to', end_time,
+            '-i', video_path,
+            '-c', 'copy',
+            output_path
+        ]
 
     print (f"executing command: {' '.join(command)}")
 
@@ -39,6 +49,8 @@ if __name__ == "__main__":
 
     if not os.path.exists(input_video_file):
         print(f"'{input_video_file}' not found.")
+
+
 
     if trim_video(input_video_file, input("Start time (s): "), input("End time (s): ")):
         print("\nVideo trim process completed.")
